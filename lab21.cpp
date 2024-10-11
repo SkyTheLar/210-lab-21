@@ -9,18 +9,26 @@ COMSC 210 | Lab 21 | Skylar Robinson | IDE Used: Eclipse
 #include <string>
 using namespace std;
 
-const int MIN_NR = 10, MAX_NR = 99, MIN_LS = 5, MAX_LS = 20, SIZE = 15;
+const int MIN_NR = 10, MAX_NR = 99, MIN_LS = 5, MAX_LS = 20,
+		  SIZE = 15, MAX_AG = 20, MIN_AG = 1;
 
 class Goat {
 private:
 	int age;
 	string name, color;
-	string names[SIZE], colors[SIZE];
+	string names[SIZE] = { "Johanna", "Micheal", "Mahadevi", "Minerva", "Rufus"
+			               "Heilwig", "Gordana", "Vidar", "Iben", "Aminah"
+						   "Amelia", "Magdalini", "Lina", "Tutgual", "Dex" };
+	string colors[SIZE] = { "brown", "black", "white", "grey", "tan",
+							"red", "yellow", "gold", "dark grey", "calico"
+							"orange", "auburn", "maroon", "silver", "pink" };
 
 public:
 	//default constructor
 	Goat() {
-
+		age = (rand() % (MAX_AG - MIN_AG + 1)) + MIN_AG;
+		name = names[rand() % SIZE];
+		color = colors[rand() % SIZE];
 	}
 
 	//parameter instructor
