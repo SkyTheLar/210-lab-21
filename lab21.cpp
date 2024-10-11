@@ -9,15 +9,14 @@ COMSC 210 | Lab 21 | Skylar Robinson | IDE Used: Eclipse
 #include <string>
 using namespace std;
 
-const int MIN_NR = 10, MAX_NR = 99, MIN_LS = 5, MAX_LS = 20,
-		  SIZE = 15, MAX_AG = 20, MIN_AG = 1;
+const int MIN_LS = 5, MAX_LS = 20, SIZE = 15, MAX_AG = 20, MIN_AG = 1;
 
 class Goat {
 private:
 	int age;
 	string name, color;
-	string names[SIZE] = { "Johanna", "Micheal", "Mahadevi", "Minerva", "Rufus"
-			               "Heilwig", "Gordana", "Vidar", "Iben", "Aminah"
+	string names[SIZE] = { "Johanna", "Micheal", "Mahadevi", "Minerva", "Rufus",
+			               "Heilwig", "Gordana", "Vidar", "Iben", "Aminah",
 						   "Amelia", "Magdalini", "Lina", "Tutgual", "Dex" };
 	string colors[SIZE] = { "brown", "black", "white", "grey", "tan",
 							"red", "yellow", "gold", "dark grey", "calico"
@@ -38,9 +37,9 @@ public:
 		color = c;
 	}
 
-	//print funtion
+	//print function
 	void print() {
-		cout << name << " (" << color << ", " << age << endl;
+		cout << name << " (" << color << ", " << age << ")\n";
 	}
 };
 
@@ -117,14 +116,18 @@ public:
         temp->next = newNode;
     }
 
-    void delete_node(Goat value) {
+    void delete_node(int position) {
         if (!head) return; // Empty list
+        if (position < 0) {
+            cout << "Position must be >= 0." << endl;
+            return;
+        }
 
         Node* temp = head;
-        while (temp && temp->data != value)
+        for (int i = 0; i < position && temp; ++i)
             temp = temp->next;
 
-        if (!temp) return; // Value not found
+        if (!temp) return; // Position not found
 
         if (temp->prev) {
             temp->prev->next = temp->next;
@@ -148,7 +151,7 @@ public:
         	return;
         }
         while (current) {
-            cout << current->data.print();
+            current->data.print();
             current = current->next;
         }
         cout << endl;
@@ -156,9 +159,12 @@ public:
 
     void print_reverse() {
         Node* current = tail;
-        if (!current) return;
+        if (!current) {
+        	cout << "List is empty\n";
+        	return;
+        }
         while (current) {
-            cout << current->data.print();
+            current->data.print();
             current = current->prev;
         }
         cout << endl;
@@ -178,6 +184,11 @@ int main() {
 	srand(time(0));
 
     DoublyLinkedList list;
+
+    for (int i = 0; i < (rand() % (MAX_LS - MIN_LS + 1)) + MIN_LS; i++) {
+    	Goat temp;
+    	temp.print();
+    }
 
 
     return 0;
