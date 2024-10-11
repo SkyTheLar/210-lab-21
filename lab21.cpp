@@ -19,7 +19,7 @@ private:
 			               "Heilwig", "Gordana", "Vidar", "Iben", "Aminah",
 						   "Amelia", "Magdalini", "Lina", "Tutgual", "Dex" };
 	string colors[SIZE] = { "brown", "black", "white", "grey", "tan",
-							"red", "yellow", "gold", "dark grey", "calico"
+							"red", "yellow", "gold", "dark grey", "calico",
 							"orange", "auburn", "maroon", "silver", "pink" };
 
 public:
@@ -151,7 +151,7 @@ public:
         	return;
         }
         while (current) {
-            current->data.print();
+        	current->data.print();
             current = current->next;
         }
         cout << endl;
@@ -187,9 +187,18 @@ int main() {
 
     for (int i = 0; i < (rand() % (MAX_LS - MIN_LS + 1)) + MIN_LS; i++) {
     	Goat temp;
-    	temp.print();
+    	list.push_back(temp);
     }
 
+    cout << "Forward:\n";
+    list.print();
+
+    cout << "\nBackward:\n";
+    list.print_reverse();
+
+    cout << "Deleting list, then trying to print.\n";
+    list.~DoublyLinkedList();
+    list.print();
 
     return 0;
 }
